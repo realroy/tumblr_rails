@@ -1,0 +1,13 @@
+<h1>Post Feed</h1>
+<% if user_signed_in? %>
+  <%= link_to 'Create new a post', new_post_path, class: 'btn btn-sm btn-outline-secondary' %>
+<% end %>
+<% @posts.each do |p| %>
+  <div class="mt-5">
+    <h2><%= link_to p.title, post_path(p) %></h2>
+    <strong>Author: <%= p.user.email %></strong><br>
+    <small><%= time_ago_in_words p.created_at %> ago.</small>
+    <p><%= truncate p.body, length: 100 %></p>
+  </div>
+  <hr/>
+<% end %>

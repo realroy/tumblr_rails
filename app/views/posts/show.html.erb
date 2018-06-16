@@ -1,0 +1,21 @@
+<%= link_to 'Back', posts_path, class: 'btn btn-sm btn-outline-primary' %>
+<h1><%= @post.title %></h1>
+<% if current_user == @post.user  %>
+  <div>
+    <%= link_to 'Edit Post', edit_post_path %>
+    <%= link_to 'Delete Post', post_path, method: :delete, data: {confirm: 'Are you sure ?'} %>
+  </div>
+<% end %>
+<strong><%= @post.user.email %></strong>
+<small><%= time_ago_in_words(@post.created_at) %> ago</small>
+<p><%= @post.body %></p>
+<hr>
+<div>
+  <h2>
+    <%= pluralize @post.comments.count, 'Comment' %>
+  </h2>
+  <%= render @post.comments %>
+  <%= render 'comments/form' %>
+</div>
+<div>
+</div>

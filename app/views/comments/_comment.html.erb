@@ -1,0 +1,11 @@
+<div>
+  <strong>
+    <%= comment.name %>
+  </strong>
+  <small><%= time_ago_in_words comment.created_at %></small>
+  <p><%= comment.body %></p>
+  <% if current_user == comment.post.user %>
+    <%= link_to 'Delete comment', [comment.post, comment], method: :delete, data: {confirm: 'Are you sure ?'} %>
+  <% end %>
+  <hr/>
+</div>
